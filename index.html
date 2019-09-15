@@ -31,6 +31,7 @@
 <script type='text/javascript'>
     if (Cookies.get('vkLoginSuccess')){
         friends = JSON.parse(localStorage.getItem("vkLoginSuccess"));
+        let html = ''
         for (let i = 0; i < friends.length; ++i){
             let f = friends[i];
             html += `<li>
@@ -42,6 +43,7 @@
                         </a>
                     </li>`;
         }
+        $('ul').html(html);
     };
     $('#token').click(function(event){
         event.preventDefault();
