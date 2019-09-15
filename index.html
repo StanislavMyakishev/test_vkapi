@@ -27,10 +27,16 @@
     }, 0);
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type='text/javascript'>
+    if (Cookies.get('vkLoginSuccess')){
+        localStorage.get(Cookies.get('vkLoginSuccess'));
+    };
     $('#token').click(function(event){
         event.preventDefault();
         VK.Auth.login(null, VK.access.FRIENDS);
+        Cookies.set('vkLoginSuccess', 'true', {expires: 7});
+        key = Cookies.get('vkLoginSuccess');
         VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, function(r) {
             if(r.response.items) {
                 let friends = r.response.items
@@ -47,7 +53,8 @@
                             </li>`;
                 }
                 $('ul').html(html);
-            }
+                localStorage.setItem(key, friends);
+            };
           });
     });
     $('#load').on('click', loadFriends);
