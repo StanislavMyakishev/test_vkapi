@@ -31,6 +31,11 @@
     $('#token').click(function(event){
         event.preventDefault();
         VK.Auth.login(null, VK.access.FRIENDS);
+        VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, function(r) {
+            if(r.response) {
+              console.log(r.response);
+            }
+          });
     });
     $('#load').on('click', loadFriends);
     //$('#token').on('click', getToken);
