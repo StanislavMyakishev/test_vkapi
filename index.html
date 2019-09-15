@@ -14,13 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type='text/javascript'>
     $('#load').on('click', loadFriends);
-    $('#token').ready(function () {
-        var url = 'https://oauth.vk.com/authorize?client_id=7136546&display=popup&redirect_uri=https://stanislavmyakishev.github.io/test_vkapi/&scope=friends&response_type=token&v=5.101&state=123456';
-        $.get(url, function (data) {
-            console.log(data);
-        });
-      });
-    //$('#token').on('click', getToken);
+    $('#token').on('click', getToken);
 
     function getUrl(method, params){
         if (!method){
