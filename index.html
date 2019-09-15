@@ -10,11 +10,30 @@
     <button id='load'>Show friends</button>
     <button id='token'>Try to get token</button>
     <ul></ul>
+    <div id="vk_api_transport"></div>
 </body>
+<script type="text/javascript">
+    window.vkAsyncInit = function() {
+      VK.init({
+        apiId: 7136546,
+      });
+    };
+    setTimeout(function() {
+      var el = document.createElement("script");
+      el.type = "text/javascript";
+      el.src = "https://vk.com/js/api/openapi.js?162";
+      el.async = true;
+      document.getElementById("vk_api_transport").appendChild(el);
+    }, 0);
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type='text/javascript'>
+    $('#token').click(function(event){
+        event.preventDefault();
+        VK.Auth.login(null, VK.access.FRIENDS);
+    });
     $('#load').on('click', loadFriends);
-    $('#token').on('click', getToken);
+    //$('#token').on('click', getToken);
 
     function getUrl(method, params){
         if (!method){
