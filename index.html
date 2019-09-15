@@ -30,7 +30,7 @@
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type='text/javascript'>
     if (Cookies.get('vkLoginSuccess')){
-        localStorage.get(Cookies.get('vkLoginSuccess'));
+        localStorage.getItem(Cookies.get('vkLoginSuccess'));
     };
     $('#token').click(function(event){
         event.preventDefault();
