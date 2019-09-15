@@ -8,11 +8,14 @@
 </head>
 <body>
     <button id='load'>Show friends</button>
+    <button id='token'>Try to get token</button>
     <ul></ul>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type='text/javascript'>
     $('#load').on('click', loadFriends);
+    $('#token').on('click', getToken);
+
     function getUrl(method, params){
         if (!method){
             throw new Error('No method used');
@@ -20,7 +23,6 @@
         params = params || {};
         params['access_token'] = '';
         return `https://api.vk.com/method/${method}?${$.param(params)}`
-        
     }
 
     function sendRequest(method, params, func){
@@ -53,6 +55,22 @@
                     </li>`;
         }
         $('ul').html(html);
+    }
+
+    function getToken(){
+        $.ajax({
+            url: getTokenUrl(params),
+            method: 'GET',
+            dataType: 'JSONP',
+            success: func,
+        });
+        let token = window.location.hash.toString();
+        alert(token);
+    }
+
+    function getTokenUrl(param){
+        params = params || {};
+        return `https://oauth.vk.com/authorize?client_id=7136546&display=page&redirect_uri=https://stanislavmyakishev.github.io/test_vkapi/&scope=friends&response_type=token&v=5.101&state=123456`
     }
 </script>
 </html>
