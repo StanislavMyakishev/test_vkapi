@@ -63,9 +63,9 @@
                                 </a>
                             </li>`;
                 }
-                $('ul').html(html);
-                localStorage.setItem('vk_app_7136546', JSON.stringify(friends));
             };
+            $('ul').html(html);
+            localStorage.setItem('vk_app_7136546', JSON.stringify(friends));
           });
     });
     $('#load').on('click', loadFriends);
