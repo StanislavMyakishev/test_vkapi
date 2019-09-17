@@ -68,7 +68,6 @@
         VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
             let html = ''
             html = drawAppearence(resp.response)
-            console.log(html + '++++++++')
             localStorage.setItem('vk_friends_list', JSON.stringify(resp.response))
             return html
         })
@@ -83,7 +82,8 @@
         VK.Auth.login((resp) => {
             Cookies.set('user_name', `${resp.session.user.first_name}`)
             $('p').html(writeHello(resp.session.user.first_name))
-            $('ul').html(callFriends())
+            let friendsList = callFriends();
+            $('ul').html(friendsList)
         }, VK.access.FRIENDS)
     })
 
