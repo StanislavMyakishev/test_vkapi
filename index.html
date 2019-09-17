@@ -7,8 +7,8 @@
     <title>VK API APP</title>
 </head>
 <body>
-    <button id='load'>Show friends</button>
-    <button id='token'>Try to get token</button>
+    <button id='token'>Login</button>
+    <button id='exit'>Logout</button>
     <ul></ul>
     <div id="vk_api_transport"></div>
 </body>
@@ -29,7 +29,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type='text/javascript'>
-    if (Cookies.get('vk_app_7136546')){
+    if (Cookies.get('1')){
         friends = JSON.parse(localStorage.getItem("vk_app_7136546"));
         let html = ''
         for (let i = 0; i < friends.length; ++i){
@@ -47,7 +47,17 @@
     };
     $('#token').click(function(event){
         event.preventDefault();
-        VK.Auth.login(null, VK.access.FRIENDS);
+        //VK.Auth.login(null, VK.access.FRIENDS);
+        VK.Auth.login(function(response) {
+            if (response.session) {
+              console.log('authorized')
+              if (response.settings) {
+                console.log('Have access to friends list')
+              }
+            } else {
+              console.log('Cancel')
+            }
+          }, VK.access.FRIENDS);
         VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, function(r) {
             let friends = {};
             let html = ''
