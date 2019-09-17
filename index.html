@@ -83,6 +83,7 @@
             Cookies.set('user_name', `${resp.session.user.first_name}`)
             $('p').html(writeHello(resp.session.user.first_name))
             let friendsList = callFriends();
+            console.log(friendsList + '+++++++')
             $('ul').html(friendsList)
         }, VK.access.FRIENDS)
     })
@@ -91,13 +92,7 @@
         event.preventDefault()
         defaultLogoutResp = {}
         VK.Auth.logout((resp) => {
-            if (resp === defaultLogoutResp){
-                localStorage.removeItem('vk_friends_list')
-                Cookies.remove('user_name')
-                console.log('everything is ok')
-            } else {
-                console.log('smth went wrong')
-            }
+            console.log(resp + 'logout')
         })
         VK.Auth.revokeGrants((resp) => {
             if (resp === defaultLogoutResp){
