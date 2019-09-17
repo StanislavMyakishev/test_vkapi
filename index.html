@@ -35,21 +35,24 @@
         let html = ''
         let friends = {}
         VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
-            if (resp.response.items !== 0){
-                friends = resp.response.items
-                for (let i = 0; i < friends.length; ++i){
-                    let f = friends[i];
-                    html += `<li>
-                            <a target="_blank" href="https://vk.com/id${f.id}">
-                                <img src="${f.photo_100}" />
-                                <div>
-                                    <h4>${f.first_name} ${f.last_name}</h4>
-                                </div>
-                            </a>
-                        </li>`
+            console.log(resp)
+            if (resp.response.items){
+                if (resp.response.items !== 0){
+                    friends = resp.response.items
+                    for (let i = 0; i < friends.length; ++i){
+                        let f = friends[i];
+                        html += `<li>
+                                <a target="_blank" href="https://vk.com/id${f.id}">
+                                    <img src="${f.photo_100}" />
+                                    <div>
+                                        <h4>${f.first_name} ${f.last_name}</h4>
+                                    </div>
+                                </a>
+                            </li>`
+                    }
+                } else {
+                    html += 'No added friends yet :(';
                 }
-            } else {
-                html += 'No added friends yet :(';
             }
         })
         localStorage.setItem('vk_friends_list', JSON.stringify(friends))
