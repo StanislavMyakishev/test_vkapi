@@ -9,6 +9,7 @@
 <body>
     <button id='login'>Login</button>
     <button id='logout'>Logout</button>
+    <p></p>
     <ul></ul>
     <div id="vk_api_transport"></div>
 </body>
@@ -29,13 +30,63 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type='text/javascript'>
+
+    function callFriends(){
+        let html = ''
+        let friends = {}
+        VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
+            if (resp.response.items !== 0){
+                friends = resp.response.items
+                for (let i = 0; i < friends.length; ++i){
+                    let f = friend[i];
+                    html += `<li>
+                            <a target="_blank" href="https://vk.com/id${f.id}">
+                                <img src="${f.photo_100}" />
+                                <div>
+                                    <h4>${f.first_name} ${f.last_name}</h4>
+                                </div>
+                            </a>
+                        </li>`
+                }
+            } else {
+                html += 'No added friends yet :(';
+            }
+        })
+        localStorage.setItem('vk_friends_list', JSON.stringify(friends))
+        return html
+    }
+
+    function writeHello(user){
+        return `Привет, ${user.first_name}`
+    }
+
     $('#login').click((event) =>{
         event.preventDefault()
         VK.Auth.login((resp) => {
-            console.log('Login:', resp);
+            Cookie.set('user_name', `${resp.session.user.first_name}`)
+            $('p').html(writeHello(resp.session.user))
+            $('ul').html(callFriends())
         }, VK.access.FRIENDS)
-        VK.Auth.getLoginStatus((response) => {
-            console.log('getLoginStatus:', response);
+    })
+
+    $('#logout').click((event) =>{
+        event.preventDefault()
+        defaultLogoutResp = {
+            session: null,
+            status: "unknown",
+            settings: undefined
+        }
+        VK.Auth.logout((resp) => {
+            if (resp === defaultLogoutResp){
+                localStorage.removeItem('vk_friends_list')
+            } else {
+                console.log('smth went wrong')
+            }
+        })
+        VK.Auth.revokeGrants((resp) => {
+            if (resp === defaultLogoutResp){
+                console.log('you have loged out')
+            }  
         })
     })
 </script>
