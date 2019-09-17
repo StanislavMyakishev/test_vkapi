@@ -71,7 +71,7 @@
             html = drawAppearence(resp.response)
             localStorage.setItem('vk_friends_list', JSON.stringify(resp.response))
         })
-        console.log(html)
+        console.log(html + '+++++++++')
         return html
     }
 
@@ -90,16 +90,12 @@
 
     $('#logout').click((event) =>{
         event.preventDefault()
-        defaultLogoutResp = {
-            session: null,
-            status: "unknown",
-            settings: undefined
-        }
+        defaultLogoutResp = {}
         VK.Auth.logout((resp) => {
-            console.log(resp)
             if (resp === defaultLogoutResp){
                 localStorage.removeItem('vk_friends_list')
                 Cookies.remove('user_name')
+                console.log('everything is ok')
             } else {
                 console.log('smth went wrong')
             }
