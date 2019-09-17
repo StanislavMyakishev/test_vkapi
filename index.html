@@ -63,7 +63,7 @@
     $('#login').click((event) =>{
         event.preventDefault()
         VK.Auth.login((resp) => {
-            Cookie.set('user_name', `${resp.session.user.first_name}`)
+            Cookies.set('user_name', `${resp.session.user.first_name}`)
             $('p').html(writeHello(resp.session.user))
             $('ul').html(callFriends())
         }, VK.access.FRIENDS)
