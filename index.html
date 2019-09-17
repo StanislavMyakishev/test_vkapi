@@ -7,8 +7,8 @@
     <title>VK API APP</title>
 </head>
 <body>
-    <button id='token'>Login</button>
-    <button id='exit'>Logout</button>
+    <button id='login'>Login</button>
+    <button id='logout'>Logout</button>
     <ul></ul>
     <div id="vk_api_transport"></div>
 </body>
@@ -29,124 +29,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type='text/javascript'>
-    if (Cookies.get('1')){
-        friends = JSON.parse(localStorage.getItem("vk_app_7136546"));
-        let html = ''
-        for (let i = 0; i < friends.length; ++i){
-            let f = friends[i];
-            html += `<li>
-                        <a target="_blank" href="https://vk.com/id${f.id}">
-                            <img src="${f.photo_100}" />
-                            <div>
-                                <h4>${f.first_name} ${f.last_name}</h4>
-                            </div>
-                        </a>
-                    </li>`;
-        }
-        $('ul').html(html);
-    };
-    $('#token').click(function(event){
-        event.preventDefault();
+    $('login').click((event) => {
+        event.preventDefault()
+        VK.Auth.getLoginStatus((response) => {
+            console.log(response);
+        })
         //VK.Auth.login(null, VK.access.FRIENDS);
-        VK.Auth.login(function(response) {
-            if (response.session) {
-              console.log('authorized')
-              if (response.settings) {
-                console.log('Have access to friends list')
-              }
-            } else {
-              console.log('Cancel')
-            }
-          }, VK.access.FRIENDS);
-        VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, function(r) {
-            let friends = {};
-            let html = ''
-            if(r.response.items) {
-                friends = r.response.items
-                if (r.response.count !== 0){
-                    for (let i = 0; i < friends.length; ++i){
-                        let f = friends[i];
-                        html += `<li>
-                                    <a target="_blank" href="https://vk.com/id${f.id}">
-                                        <img src="${f.photo_100}" />
-                                        <div>
-                                            <h4>${f.first_name} ${f.last_name}</h4>
-                                        </div>
-                                    </a>
-                                </li>`;
-                    }
-                } else {
-                    html += 'No friends yet';
-                };
-            };
-            $('ul').html(html);
-            localStorage.setItem('vk_app_7136546', JSON.stringify(friends));
-          });
-    });
-    $('#load').on('click', loadFriends);
-    //$('#token').on('click', getToken);
-
-    function getUrl(method, params){
-        if (!method){
-            throw new Error('No method used');
-        }
-        params = params || {};
-        params['access_token'] = '';
-        return `https://api.vk.com/method/${method}?${$.param(params)}`
-    }
-
-    function sendRequest(method, params, func){
-        $.ajax({
-            url: getUrl(method, params),
-            method: 'GET',
-            dataType: 'JSONP',
-            success: func,
-        });
-    }
-
-    function loadFriends(){
-        sendRequest('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (data)=>{
-            drawFriends(data.response.items);
-        });
-    }
-
-    function drawFriends(friends){
-        console.log(friends);
-        let html = ''
-        for (let i = 0; i < friends.length; ++i){
-            let f = friends[i];
-            html += `<li>
-                        <a target="_blank" href="https://vk.com/id${f.id}">
-                            <img src="${f.photo_100}" />
-                            <div>
-                                <h4>${f.first_name} ${f.last_name}</h4>
-                            </div>
-                        </a>
-                    </li>`;
-        }
-        $('ul').html(html);
-    }
-
-    function getToken(){
-        $.ajax({
-            url: 'https://oauth.vk.com/authorize?client_id=7136546&display=popup&redirect_uri=https://stanislavmyakishev.github.io/test_vkapi/&scope=friends&response_type=token&v=5.101&state=123456',
-            method: 'GET',
-            dataType: 'JSON',
-            xhrFields: {
-                withCredentials: true
-            },
-            success: (data) => {
-                console.log(data);
-            },
-        });
-        let token = window.location.hash.toString();
-        alert(token);
-    }
-
-    function getTokenUrl(){
-        return `https://oauth.vk.com/authorize?client_id=7136546&display=popup&redirect_uri=https://stanislavmyakishev.github.io/test_vkapi/&scope=friends&response_type=token&v=5.101&state=123456`
-    }
-
-    Cookies.remove('vkLoginSuccess');
+        //VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (response) => {    
+        //})
+    })
 </script>
 </html>
