@@ -71,6 +71,7 @@
             html = drawAppearence(resp.response)
             localStorage.setItem('vk_friends_list', JSON.stringify(resp.response))
         })
+        console.log(html)
         return html
     }
 
@@ -95,6 +96,7 @@
             settings: undefined
         }
         VK.Auth.logout((resp) => {
+            console.log(resp)
             if (resp === defaultLogoutResp){
                 localStorage.removeItem('vk_friends_list')
                 Cookies.remove('user_name')
