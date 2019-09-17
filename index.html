@@ -83,11 +83,11 @@
         event.preventDefault()
         VK.Auth.login((resp) => {
             Cookies.set('user_name', `${resp.session.user.first_name}`)
+            let friendsList = callFriends()
             $('p').html(writeHello(resp.session.user.first_name))
-            let friendsList = callFriends();
-            console.log(friendsList)
-            $('ul').html(friendsList)
         }, VK.access.FRIENDS)
+        console.log(friendsList)
+        $('ul').html(friendsList)
     })
 
     $('#logout').click((event) =>{
