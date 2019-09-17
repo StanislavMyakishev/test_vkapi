@@ -36,6 +36,7 @@
     }
 
     if (localStorage.getItem('vk_friends_list') === null){
+        console.log('localstorage is not empty')
         resp = JSON.parse(localStorage.getItem('vk_friends_list'))
         $('ul').html(drawAppearence(resp))
     }
@@ -70,9 +71,8 @@
         VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
             html = drawAppearence(resp.response)
             localStorage.setItem('vk_friends_list', JSON.stringify(resp.response))
+            return html
         })
-        console.log(html + '+++++++++')
-        return html
     }
 
     function writeHello(first_name){
