@@ -29,13 +29,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type='text/javascript'>
-    $('login').click(function (event){
+    $('#login').click((event) =>{
         event.preventDefault()
-        VK.Auth.login(null, VK.access.FRIENDS);
+        VK.Auth.login((resp) => {
+            console.log('Login:', resp);
+        }, VK.access.FRIENDS)
         VK.Auth.getLoginStatus((response) => {
-            console.log(response);
+            console.log('getLoginStatus:', response);
         })
-        
     })
 </script>
 </html>
