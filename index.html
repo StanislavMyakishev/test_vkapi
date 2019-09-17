@@ -35,7 +35,7 @@
         $('p').html(writeHello(Cookies.get('user_name')))
     }
 
-    if (localStorage.getItem('vk_friends_list') === null){
+    if (localStorage.getItem('vk_friends_list') !== null){
         console.log('localstorage is not empty')
         resp = JSON.parse(localStorage.getItem('vk_friends_list'))
         $('ul').html(drawAppearence(resp))
@@ -92,13 +92,7 @@
         event.preventDefault()
         defaultLogoutResp = {}
         VK.Auth.logout((resp) => {
-            if (resp === defaultLogoutResp){
-                localStorage.removeItem('vk_friends_list')
-                Cookies.remove('user_name')
-                console.log('everything is ok')
-            } else {
-                console.log('smth went wrong')
-            }
+            console.log(resp)
         })
         VK.Auth.revokeGrants((resp) => {
             if (resp === defaultLogoutResp){
