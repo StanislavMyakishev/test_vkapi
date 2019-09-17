@@ -82,13 +82,20 @@
     $('#login').click((event) =>{
         event.preventDefault()
         let friendsList
-        VK.Auth.login((resp) => {
-            Cookies.set('user_name', `${resp.session.user.first_name}`)
-            friendsList = callFriends()
-            $('p').html(writeHello(resp.session.user.first_name))
-        }, VK.access.FRIENDS)
-        console.log(friendsList)
-        $('ul').html(friendsList)
+        let promise = new Promise((resolve) => {
+            VK.Auth.login((resp) => {
+                Cookies.set('user_name', `${resp.session.user.first_name}`)
+                $('p').html(writeHello(resp.session.user.first_name))
+                resolve(callFriends())
+            }, VK.access.FRIENDS)
+        })
+        promise
+            .then(
+                res => {
+                    console.log(res)
+                    $('ul').html(res)       
+                }
+            )
     })
 
     $('#logout').click((event) =>{
