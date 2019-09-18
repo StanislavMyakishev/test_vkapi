@@ -17,7 +17,7 @@ function drawAppearence(resp){
                 let f = friends[i];
                 html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                         <a target="_blank" href="https://vk.com/id${f.id}">
-                            <img class="friend-img" src="${f.photo_100}" />
+                            <img class="frounded-circle" src="${f.photo_100}" />
                             <div class="friend-name">
                                 <h4>${f.first_name} ${f.last_name}</h4>
                             </div>
