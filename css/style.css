@@ -1,3 +1,7 @@
+.list-elem-img {
+    float: left;
+}
+
 .list-group {
     list-style: none;
 }
