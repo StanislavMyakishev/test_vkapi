@@ -1,7 +1,12 @@
-.friend-name {
-    display: flex;
+.list-group-item {
+    list-style: none;
 }
-
 .friend-img {
     border-radius: 50%;
+}
+
+.list-group {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
