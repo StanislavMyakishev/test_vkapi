@@ -56,24 +56,28 @@ $('.login-btn').click((event) =>{
     let friendsList;
     let promise = new Promise((resolve) => {
         VK.Auth.login((resp) => {
-            $('.logout-btn').css('display', 'initial');
-            $('.login-btn').css('display', 'none');
-            Cookies.set('user_name', `${resp.session.user.first_name}`);
-            $('.lead').html(writeHello(resp.session.user.first_name));
-            let promise = new Promise((resolve) => {
-                VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
-                    let html = '';
-                    html = drawAppearence(resp.response);
-                    localStorage.setItem('vk_friends_list', JSON.stringify(resp.response));
-                    resolve(html);
+            if (response.session) {
+                $('.logout-btn').css('display', 'initial');
+                $('.login-btn').css('display', 'none');
+                Cookies.set('user_name', `${resp.session.user.first_name}`);
+                $('.lead').html(writeHello(resp.session.user.first_name));
+                let promise = new Promise((resolve) => {
+                    VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
+                        let html = '';
+                        html = drawAppearence(resp.response);
+                        localStorage.setItem('vk_friends_list', JSON.stringify(resp.response));
+                        resolve(html);
+                    });
                 });
-            });
-            promise
-                .then(
-                    html => {
-                        $('.list-group').html(html);
-                    }
-                );
+                promise
+                    .then(
+                        html => {
+                            $('.list-group').html(html);
+                        }
+                    );
+              } else {
+                $('.lead').html('Пожалуйста, авторизуйтесь через сервис ВКонтакте.');
+              }
         }, VK.access.FRIENDS);
     })       
 })
