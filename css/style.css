@@ -1,5 +1,5 @@
 .list-elem {
-    margin-left: 50px;
+    margin-left: 30px;
     display: grid;
     grid-template-rows: 15vh;
     grid-template-columns: 100px 45vw;
@@ -39,6 +39,8 @@
 }
 
 .friend-img {
+    margin:auto 1px auto 1px;
+    height: 100px;
     border-radius: 50%;
 }
 
