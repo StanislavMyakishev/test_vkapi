@@ -1,3 +1,7 @@
+.btn-group{
+    margin: auto;
+}
+
 .list-group-item {
     list-style: none;
 }
