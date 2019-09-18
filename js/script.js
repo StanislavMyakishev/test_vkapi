@@ -25,7 +25,7 @@ function drawAppearence(resp){
                             <div class="list-elem">
                                 <img class="list-elems friend-img" src="${f.photo_100}"/>
                                 <h4 class="list-elems">${f.first_name} ${f.last_name}</h4>
-                                <p>${online}</>
+                                <p class="online-status">${online}</>
                             </div>
                         </a>
                     </li>`;

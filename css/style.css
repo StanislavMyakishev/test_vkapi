@@ -6,11 +6,15 @@
     grid-gap: 2vw;
 }
 
+.online-status {
+    text-align: center;
+}
+
 .list-group-item {
     border-style: none;
 }
 
-.lead {
+.display-1 {
     text-align: center;
 }
 
