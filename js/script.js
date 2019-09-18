@@ -36,7 +36,7 @@ function writeHello(first_name){
     return `Привет, ${first_name}`
 }
     
-$('#login').click((event) =>{
+$('.login-btn').click((event) =>{
     event.preventDefault()
     let friendsList
     let promise = new Promise((resolve) => {
@@ -63,7 +63,7 @@ $('#login').click((event) =>{
     })       
 })
     
-$('#logout').click((event) =>{
+$('.logout-btn').click((event) =>{
     event.preventDefault()
     defaultLogoutResp = {}
     VK.Auth.logout((resp) => {
