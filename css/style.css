@@ -16,6 +16,8 @@
 }
 
 .list-group {
+    margin: auto;
+    width: 70%;
     list-style: none;
 }
 
