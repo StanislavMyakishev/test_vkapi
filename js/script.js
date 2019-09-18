@@ -13,6 +13,7 @@ function drawAppearence(resp){
     if (resp !== null){
         if (resp.count !== 0){
         friends = resp.items;
+        console.log(friends);
             for (let i = 0; i < friends.length; ++i){
                 let f = friends[i];
                 html += `<li class="list-group-item d-flex justify-content-between align-items-center">

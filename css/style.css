@@ -1,3 +1,16 @@
+.list-elem {
+    margin: auto;
+    width: 60%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+}
+
+.list-group-item {
+    border-style: none;
+}
+
 .lead {
     text-align: center;
 }
