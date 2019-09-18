@@ -2,9 +2,9 @@
     margin-left: 30px;
     display: grid;
     grid-template-rows: 15vh;
-    grid-template-columns: 100px 45vw;
+    grid-template-columns: 100px 40vw;
     grid-column-gap: 50px;
-    grid-row-gap: 20px;
+    grid-row-gap: 10px;
 }
 
 .btn {
