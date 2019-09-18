@@ -56,7 +56,7 @@ $('.login-btn').click((event) =>{
     let friendsList;
     let promise = new Promise((resolve) => {
         VK.Auth.login((resp) => {
-            if (response.session) {
+            if (resp.session) {
                 $('.logout-btn').css('display', 'initial');
                 $('.login-btn').css('display', 'none');
                 Cookies.set('user_name', `${resp.session.user.first_name}`);
