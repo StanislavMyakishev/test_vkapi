@@ -1,6 +1,5 @@
 .list-elem {
-    margin: auto;
-    width: 60%;
+    margin-left: 50px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
