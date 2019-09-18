@@ -3,7 +3,7 @@
     display: grid;
     grid-template-rows: 15vh;
     grid-template-columns: 100px 50vw;
-    grid-gap: 5px;
+    grid-gap: 2vw;
 }
 
 .btn {
