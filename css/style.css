@@ -1,13 +1,12 @@
 .list-elem {
     margin-left: 50px;
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 100px 3fr;
+    grid-template-rows: 15vh;
+    grid-template-columns: 100px 30vw;
     grid-gap: 2vw;
 }
 
 div h4.friend-text {
-    height: 2vh;
     line-height: 2vh;
     white-space: nowrap;
 }
