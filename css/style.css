@@ -16,6 +16,9 @@ div h4.friend-text {
 }
 
 .friend-text {
+    width:50vw;
+    margin:auto 1px auto 1px;
+    line-height:120%;
     font-size: 3vh;
     word-wrap: break-word;
 }
