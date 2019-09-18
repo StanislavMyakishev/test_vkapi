@@ -2,7 +2,7 @@
     margin-left: 50px;
     display: grid;
     grid-template-rows: 15vh;
-    grid-template-columns: 100px 50vw;
+    grid-template-columns: 100px 30vw;
     grid-gap: 2vw;
 }
 
@@ -11,12 +11,12 @@
 }
 
 div h4.friend-text {
-    line-height: 5vh;
+    line-height: 2vh;
     white-space: nowrap;
 }
 
 .friend-text {
-    font-size: 5vh;
+    font-size: 2vh;
 }
 
 .online-status {
