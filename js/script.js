@@ -70,6 +70,6 @@ $('.logout-btn').click((event) =>{
     })
     VK.Auth.revokeGrants((resp) => {
     })
-    $('p').html('');
+    $('.lead').html('Авторизируйтесь, чтобы увидеть 5 самых важных друзей в ВКонтакте!');
     $('ul').html('');
 })
