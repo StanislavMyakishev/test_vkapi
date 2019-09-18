@@ -20,6 +20,7 @@ div h4.friend-text {
 }
 
 .online-status {
+    font-weight: 1vh;
     text-align: center;
 }
 
@@ -33,7 +34,7 @@ div h4.friend-text {
 }
 
 .list-group {
-    margin-left: 10px;
+    margin-left: 5px;
     list-style: none;
 }
 
