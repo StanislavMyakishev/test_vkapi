@@ -15,7 +15,7 @@ function drawAppearence(resp){
         friends = resp.items
             for (let i = 0; i < friends.length; ++i){
                 let f = friends[i];
-                html += `<li>
+                html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                         <a target="_blank" href="https://vk.com/id${f.id}">
                             <img src="${f.photo_100}" />
                             <div>
@@ -56,7 +56,7 @@ $('.login-btn').click((event) =>{
                 .then(
                     html => {
                         console.log(html + 'click')
-                        $('ul').html(html)
+                        $('.list-group').html(html)
                     }
                 )
         }, VK.access.FRIENDS)
