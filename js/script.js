@@ -1,5 +1,6 @@
 if (Cookies.get('user_name')){
     $('.lead').html(writeHello(Cookies.get('user_name')));
+    $(.'logout-btn').css('display', 'initial');
 }
     
 if (localStorage.getItem('vk_friends_list') !== null){
@@ -35,7 +36,7 @@ function drawAppearence(resp){
         } else {
             html += 'No added friends yet :(';
         }
-        return html
+        return html;
     }
 }
     
@@ -63,7 +64,7 @@ $('.login-btn').click((event) =>{
                     html => {
                         $('.list-group').html(html);
                     }
-                )
+                );
         }, VK.access.FRIENDS);
     })       
 })
@@ -77,6 +78,8 @@ $('.logout-btn').click((event) =>{
     })
     VK.Auth.revokeGrants((resp) => {
     })
+    $('.logout-btn').css('display', 'none');
+    $('.login-btn').css('display', 'initial');
     $('.lead').html('Авторизируйтесь, чтобы увидеть 5 самых важных друзей в ВКонтакте!');
     $('ul').html('');
 })
