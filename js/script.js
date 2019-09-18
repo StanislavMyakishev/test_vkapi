@@ -1,6 +1,8 @@
 if (Cookies.get('user_name')){
     $('.lead').html(writeHello(Cookies.get('user_name')));
     $(.'logout-btn').css('display', 'initial');
+} else {
+    $('.login-btn').css('display', 'initial');
 }
     
 if (localStorage.getItem('vk_friends_list') !== null){
