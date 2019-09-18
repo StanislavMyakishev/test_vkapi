@@ -2,8 +2,8 @@
     margin-left: 50px;
     display: grid;
     grid-template-rows: 15vh;
-    grid-template-columns: 100px 30vw;
-    grid-gap: 2vw;
+    grid-template-columns: 100px 50vw;
+    grid-gap: 5px;
 }
 
 .btn {
@@ -16,7 +16,7 @@ div h4.friend-text {
 }
 
 .friend-text {
-    font-size: 5vh;
+    font-size: 3vh;
     word-wrap: break-word;
 }
 
@@ -30,6 +30,7 @@ div h4.friend-text {
 }
 
 .lead {
+    font-size: 3vh;
     text-align: center;
     text-underline-position: none;
 }
