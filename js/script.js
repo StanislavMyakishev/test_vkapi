@@ -1,5 +1,5 @@
 if (Cookies.get('user_name')){
-    $('.display-4').html(writeHello(Cookies.get('user_name')));
+    $('.lead').html(writeHello(Cookies.get('user_name')));
 }
     
 if (localStorage.getItem('vk_friends_list') !== null){
@@ -26,7 +26,7 @@ function drawAppearence(resp){
                         <a target="_blank" href="https://vk.com/id${f.id}">
                             <div class="list-elem">
                                 <img class="list-elems friend-img" src="${f.photo_100}"/>
-                                <h4 class="list-elems">${f.first_name} ${f.last_name}</h4>
+                                <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
                                 <p class="online-status">${online}</>
                             </div>
                         </a>
@@ -77,6 +77,6 @@ $('.logout-btn').click((event) =>{
     })
     VK.Auth.revokeGrants((resp) => {
     })
-    $('.display-4').html('Авторизируйтесь, чтобы увидеть 5 самых важных друзей в ВКонтакте!');
+    $('.lead').html('Авторизируйтесь, чтобы увидеть 5 самых важных друзей в ВКонтакте!');
     $('ul').html('');
 })

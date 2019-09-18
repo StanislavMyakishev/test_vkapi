@@ -6,10 +6,14 @@
     grid-gap: 2vw;
 }
 
-div h4 {
-    height: 100px;
-    line-height: 100px;
+div h4.friend-text {
+    height: 2vh;
+    line-height: 2vh;
     white-space: nowrap;
+}
+
+.friend-text {
+    font-size: 2vh;
 }
 
 .online-status {
@@ -20,14 +24,13 @@ div h4 {
     border-style: none;
 }
 
-.display-4 {
+.lead {
     text-align: center;
     text-underline-position: none;
 }
 
 .list-group {
-    margin: auto;
-    width: 95%;
+    margin-left: 10px;
     list-style: none;
 }
 
