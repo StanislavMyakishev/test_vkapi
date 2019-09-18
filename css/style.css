@@ -10,11 +10,6 @@
     display: none;
 }
 
-div h4.friend-text {
-    line-height: 2vh;
-    white-space: normal;
-}
-
 .friend-text {
     width:50vw;
     margin:auto 1px auto 1px;
