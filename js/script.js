@@ -86,8 +86,10 @@ $('.logout-btn').click((event) =>{
     event.preventDefault();
     defaultLogoutResp = {};
     VK.Auth.logout((resp) => {
-        localStorage.removeItem('vk_friends_list');
-        Cookies.remove('user_name');
+        if (resp === {session: null, status: "unknown", settings: undefined}){
+            localStorage.removeItem('vk_friends_list');
+            Cookies.remove('user_name');
+        }
     })
     VK.Auth.revokeGrants((resp) => {
     })
