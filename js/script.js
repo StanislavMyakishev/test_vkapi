@@ -31,8 +31,10 @@ function drawAppearence(resp){
                             <div class="list-elem">
                                 <img class="list-elems friend-img" src="${f.photo_100}"/>
                                 <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
-                                <p class="online-status">${online}</p>
-                                <i style="display="${mobile}"; class="tiny material-icons">phone_iphone</i>w
+                                <div>
+                                    <p class="online-status">${online}</p>
+                                    <i style="display="${mobile}"; class="tiny material-icons">phone_iphone</i>
+                                </div>
                             </div>
                         </a>
                     </li>`;
