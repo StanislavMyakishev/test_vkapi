@@ -1,5 +1,5 @@
 if (Cookies.get('user_name')){
-    $('.lead').html(writeHello(Cookies.get('user_name')));
+    $('.display-1').html(writeHello(Cookies.get('user_name')));
 }
     
 if (localStorage.getItem('vk_friends_list') !== null){
