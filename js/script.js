@@ -13,12 +13,14 @@ function drawAppearence(resp){
     if (resp !== null){
         if (resp.count !== 0){
         friends = resp.items;
-        console.log(friends);
             for (let i = 0; i < friends.length; ++i){
                 let f = friends[i];
                 let online = '';
                 if (f.online === 1) {
-                    online = 'Online'
+                    online = 'Online';
+                }
+                if (f.online_mobile === 1) {
+                    online = 'Online mobile';
                 }
                 html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                         <a target="_blank" href="https://vk.com/id${f.id}">
