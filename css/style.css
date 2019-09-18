@@ -6,6 +6,12 @@
     grid-gap: 2vw;
 }
 
+div h4 {
+    height: 100px;
+    line-height: 100px;
+    white-space: nowrap;
+}
+
 .online-status {
     text-align: center;
 }
