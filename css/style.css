@@ -12,11 +12,12 @@
 
 div h4.friend-text {
     line-height: 2vh;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .friend-text {
-    font-size: 2vh;
+    font-size: 5vh;
+    word-wrap: break-word;
 }
 
 .online-status {
