@@ -2,17 +2,17 @@
     margin-left: 50px;
     display: grid;
     grid-template-rows: 15vh;
-    grid-template-columns: 100px 30vw;
+    grid-template-columns: 100px 50vw;
     grid-gap: 2vw;
 }
 
 div h4.friend-text {
-    line-height: 2vh;
+    line-height: 5vh;
     white-space: nowrap;
 }
 
 .friend-text {
-    font-size: 2vh;
+    font-size: 5vh;
 }
 
 .online-status {
