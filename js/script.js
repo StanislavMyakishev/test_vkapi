@@ -31,10 +31,8 @@ function drawAppearence(resp){
                             <div class="list-elem">
                                 <img class="list-elems friend-img" src="${f.photo_100}"/>
                                 <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
-                                <div>
-                                    <p class="online-status">${online}</p>
-                                    <i style="display="${mobile}"; class="tiny material-icons">phone_iphone</i>
-                                </div>
+                                <p class="online-status">${online}</p>
+                                <i style="display="${mobile}"; class="tiny material-icons">phone_iphone</i>
                             </div>
                         </a>
                     </li>`;
@@ -58,7 +56,7 @@ $('.login-btn').click((event) =>{
             $('.logout-btn').css('display', 'initial');
             $('.login-btn').css('display', 'none');
             Cookies.set('user_name', `${resp.session.user.first_name}`);
-            $('p').html(writeHello(resp.session.user.first_name));
+            $('.lead').html(writeHello(resp.session.user.first_name));
             let promise = new Promise((resolve) => {
                 VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
                     let html = '';
