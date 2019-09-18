@@ -1,5 +1,5 @@
 if (Cookies.get('user_name')){
-    $('p').html(writeHello(Cookies.get('user_name')));
+    $('.lead').html(writeHello(Cookies.get('user_name')));
 }
     
 if (localStorage.getItem('vk_friends_list') !== null){
@@ -16,8 +16,8 @@ function drawAppearence(resp){
             for (let i = 0; i < friends.length; ++i){
                 let f = friends[i];
                 html += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a target="_blank" href="https://vk.com/id${f.id}">
-                            <img src="${f.photo_100}" />
+                        <a class="friend-name" target="_blank" href="https://vk.com/id${f.id}">
+                            <img class="friend-img" src="${f.photo_100}" />
                             <div>
                                 <h4>${f.first_name} ${f.last_name}</h4>
                             </div>

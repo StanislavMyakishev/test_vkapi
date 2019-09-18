@@ -1,0 +1,7 @@
+.friend-name {
+    display: flex;
+}
+
+.friend-img {
+    border-radius: 50%;
+}
