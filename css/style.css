@@ -1,16 +1,19 @@
-.btn-group{
-    margin: auto;
+.friend-name {
+    display: inline;
 }
 
-.list-group-item {
-    list-style: none;
-}
 .friend-img {
     border-radius: 50%;
 }
 
 .list-group {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+    list-style: none;
+}
+
+.btn-group{
+    margin: auto;
+}
+
+.lead {
+    text-align: center;
 }
