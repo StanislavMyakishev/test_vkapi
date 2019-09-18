@@ -8,11 +8,11 @@ if (localStorage.getItem('vk_friends_list') !== null){
 }
     
 function drawAppearence(resp){
-    let html = ''            
-    let friends = {}
+    let html = '';        
+    let friends = {};
     if (resp !== null){
         if (resp.count !== 0){
-        friends = resp.items
+        friends = resp.items;
             for (let i = 0; i < friends.length; ++i){
                 let f = friends[i];
                 html += `<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -22,58 +22,53 @@ function drawAppearence(resp){
                                 <h4>${f.first_name} ${f.last_name}</h4>
                             </div>
                         </a>
-                    </li>`
+                    </li>`;
             }
         } else {
             html += 'No added friends yet :(';
         }
-        console.log(html+'drawAppearance')
         return html
     }
 }
     
 function writeHello(first_name){
-    return `Привет, ${first_name}`
+    return `Привет, ${first_name}`;
 }
     
 $('.login-btn').click((event) =>{
-    event.preventDefault()
-    let friendsList
+    event.preventDefault();
+    let friendsList;
     let promise = new Promise((resolve) => {
         VK.Auth.login((resp) => {
-            Cookies.set('user_name', `${resp.session.user.first_name}`)
-            $('p').html(writeHello(resp.session.user.first_name))
+            Cookies.set('user_name', `${resp.session.user.first_name}`);
+            $('p').html(writeHello(resp.session.user.first_name));
             let promise = new Promise((resolve) => {
                 VK.Api.call('friends.search', {count: 5, fields: 'photo_100,online', v: '5.52'}, (resp) => {
-                    let html = ''
-                    html = drawAppearence(resp.response)
-                    console.log(html+'call')
-                    localStorage.setItem('vk_friends_list', JSON.stringify(resp.response))
-                    resolve(html)
-                })
-            })
+                    let html = '';
+                    html = drawAppearence(resp.response);
+                    localStorage.setItem('vk_friends_list', JSON.stringify(resp.response));
+                    resolve(html);
+                });
+            });
             promise
                 .then(
                     html => {
-                        console.log(html + 'click')
-                        $('.list-group').html(html)
+                        $('.list-group').html(html);
                     }
                 )
-        }, VK.access.FRIENDS)
+        }, VK.access.FRIENDS);
     })       
 })
     
 $('.logout-btn').click((event) =>{
-    event.preventDefault()
-    defaultLogoutResp = {}
+    event.preventDefault();
+    defaultLogoutResp = {};
     VK.Auth.logout((resp) => {
-        localStorage.removeItem('vk_friends_list')
-        Cookies.remove('user_name')
-        console.log('everything is ok')
+        localStorage.removeItem('vk_friends_list');
+        Cookies.remove('user_name');
     })
     VK.Auth.revokeGrants((resp) => {
-        console.log('you have loged out')  
     })
-    $('p').html('')
-    $('ul').html('')
+    $('p').html('');
+    $('ul').html('');
 })
