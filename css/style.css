@@ -1,16 +1,7 @@
-.friend-name {
-    display: inline;
-}
-
 .list-group {
     list-style: none;
 }
 
-.btn-group{
-    width: 200px;
-    margin: auto;
-}
-
-.lead {
-    text-align: center;
+.friend-img {
+    border-radius: 50%;
 }
