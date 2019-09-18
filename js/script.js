@@ -18,7 +18,7 @@ function drawAppearence(resp){
                 html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                         <a target="_blank" href="https://vk.com/id${f.id}">
                             <div class="list-elem">
-                                <img class="list-elems" src="${f.photo_100}"/>
+                                <img class="list-elems friend-img" src="${f.photo_100}"/>
                                 <h4 class="list-elems">${f.first_name} ${f.last_name}</h4>
                             </div>
                         </a>

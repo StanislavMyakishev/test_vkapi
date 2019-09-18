@@ -3,6 +3,8 @@
 }
 
 .list-elems {
+    margin: auto;
+    width: 50%;
     vertical-align:middle;
 }
 
