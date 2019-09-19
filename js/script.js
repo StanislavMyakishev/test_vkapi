@@ -4,11 +4,11 @@ if (getCookie("auth_cookie")) {
   $(".lead").html(writeHello(getCookie("auth_cookie").replace(/"/g, '')));
   $(".logout-btn").css("display", "initial");
   if (getCookie("friends_list_cookie")) {
-    $(".list-group").html(
+    $(".list-unstyled").html(
       drawFriendsList(JSON.parse(getCookie("friends_list_cookie")))
     );
   } else {
-    $(".list-group").html(drawFriendsList({}));
+    $(".list-unstyled").html(drawFriendsList({}));
   }
 } else {
   deleteCookie("user_name");
@@ -131,7 +131,7 @@ $(".login-btn").click(event => {
       });
 
       promise.then(html => {
-        $(".list-group").html(html);
+        $(".list-unstyled").html(html);
       });
     } else {
       $(".lead").html("Пожалуйста, авторизуйтесь через сервис ВКонтакте.");
