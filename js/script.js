@@ -1,7 +1,7 @@
 /*jshint esversion: 9 */
 
 if (getCookie("auth_cookie")) {
-  $(".lead").html(writeHello(getCookie("auth_cookie").replace('"', '')));
+  $(".lead").html(writeHello(getCookie("auth_cookie").replace(/"/g, '')));
   $(".logout-btn").css("display", "initial");
   if (getCookie("friends_list_cookie")) {
     $(".list-group").html(
