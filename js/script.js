@@ -1,7 +1,11 @@
 /*jshint esversion: 9 */
 
+/**
+ * Initial check of cookies: auth_cookie and friends_list_cookie
+ * If there are a cookies print name and friends list
+ */
 if (getCookie("auth_cookie")) {
-  $(".lead").html(writeHello(getCookie("auth_cookie").replace(/"/g, '')));
+  $(".lead").html(writeHello(getCookie("auth_cookie").replace(/"/g, "")));
   $(".logout-btn").css("display", "initial");
   if (getCookie("friends_list_cookie")) {
     $(".list-unstyled").html(
@@ -19,8 +23,7 @@ function getCookie(name) {
   let matches = document.cookie.match(
     new RegExp(
       "(?:^|; )" +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-        "=([^;]*)"
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"
     )
   );
 
@@ -53,6 +56,10 @@ function deleteCookie(name) {
   });
 }
 
+/**
+ * @return {string} html components with user data
+ * @param {array of objects} friendsList user info
+ */
 function drawFriendsList(friendsList) {
   let html = "";
 
@@ -100,6 +107,11 @@ function writeHello(first_name) {
   return `Привет, ${first_name}`;
 }
 
+/**
+ * Login btn action: 
+ * If user is authenticated: draw friends list
+ * In case of canceled authentication: write message
+ */
 $(".login-btn").click(event => {
   event.preventDefault();
 
@@ -123,7 +135,7 @@ $(".login-btn").click(event => {
             setCookie(
               "friends_list_cookie",
               `${JSON.stringify(resp.response.items)}`,
-              { samesite: true, "max-age": 3600}
+              { samesite: true, "max-age": 3600 }
             );
             resolve(html);
           }
@@ -139,10 +151,15 @@ $(".login-btn").click(event => {
   }, VK.access.FRIENDS);
 });
 
+
+/***
+ * Logout btn action: 
+ * Remove cookie, clear the friends list
+ */
 $(".logout-btn").click(event => {
   event.preventDefault();
   deleteCookie("auth_cookie");
-  deleteCookie('friends_list_cookie');
+  deleteCookie("friends_list_cookie");
   VK.Auth.logout();
   VK.Auth.revokeGrants();
   $(".logout-btn").css("display", "none");
