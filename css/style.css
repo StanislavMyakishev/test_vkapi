@@ -19,11 +19,6 @@
     word-wrap: break-word;
 }
 
-.online-status {
-    font-weight: 1vh;
-    text-align: center;
-}
-
 .list-group-item {
     border-style: none;
 }
