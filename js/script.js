@@ -72,12 +72,14 @@ function drawFriendsList(friendsList) {
 
       html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                     <a target="_blank" href="https://vk.com/id${f.id}">
-                        <div class="list-elem">
+                        <div class="media list-elem">
                             <img class="list-elems friend-img" src="${f.photo_100}"/>
-                            <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
-                            <p style="font-weight:1vh;" class="online-status">${online}
+                            <div class="media-body">
+                                <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
+                                <p style="font-weight:1vh;" class="online-status">${online}
                                 <img style="display:${mobile};" src="/css/static/phone_iphone.svg" alt="smartphone icon"/>
-                            </p>
+                                </p>
+                            </div>
                         </div>
                     </a>
                 </li>`;
