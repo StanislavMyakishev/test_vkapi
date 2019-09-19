@@ -3,8 +3,13 @@
 if (getCookie("auth_cookie")) {
   $(".lead").html(writeHello(getCookie("auth_cookie")));
   $(".logout-btn").css("display", "initial");
-  let resp = JSON.parse(getCookie("auth_cookie"));
-  $(".list-group").html(drawFriendsList(resp));
+  if (getCookie('friends_list_cookie')){
+    let resp = JSON.parse(getCookie("auth_cookie"));
+    $(".list-group").html(drawFriendsList(resp));
+  } else {
+    $(".list-group").html(drawFriendsList({}));
+  }
+
 } else {
   deleteCookie("user_name");
   $(".login-btn").css("display", "initial");
@@ -71,7 +76,7 @@ function drawFriendsList(friendsList) {
                             <img class="list-elems friend-img" src="${f.photo_100}"/>
                             <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
                             <p style="font-weight:1vh;" class="online-status">${online}
-                                <img src="/css/static/phone_iphone.svg" alt="smartphone icon"/>
+                                <img style="display:${mobile};" src="/css/static/phone_iphone.svg" alt="smartphone icon"/>
                             </p>
                         </div>
                     </a>
@@ -98,20 +103,29 @@ $(".login-btn").click(event => {
 
   VK.Auth.login(resp => {
     if (resp.session) {
-
       $(".logout-btn").css("display", "initial");
       $(".login-btn").css("display", "none");
       $(".lead").html(writeHello(resp.session.user.first_name));
-
+      setCookie(
+        "auth_cookie",
+        `${JSON.stringify(resp.session.user.first_name)}`,
+        { samesite: true, "max-age": 3600 }
+      );
       let promise = new Promise(resolve => {
         VK.Api.call(
-          "friends.search", { count: 5, fields: "photo_100,online", v: "5.52"}, resp => {
+          "friends.search",
+          { count: 5, fields: "photo_100,online", v: "5.52" },
+          resp => {
             let html = "";
             html = drawFriendsList(resp.response.items);
-            setCookie("auth_cookie", `${JSON.stringify(resp.response.items)}`, {
-              samesite: true,
-              "max-age": 3600
-            });
+            setCookie(
+              "friends_list_cookie",
+              `${JSON.stringify(resp.response.items)}`,
+              {
+                samesite: true,
+                "max-age": 3600
+              }
+            );
             resolve(html);
           }
         );
@@ -133,6 +147,8 @@ $(".logout-btn").click(event => {
   VK.Auth.revokeGrants();
   $(".logout-btn").css("display", "none");
   $(".login-btn").css("display", "initial");
-  $(".lead").html("Авторизируйтесь, чтобы увидеть 5 самых важных друзей во ВКонтакте!");
+  $(".lead").html(
+    "Авторизируйтесь, чтобы увидеть 5 самых важных друзей во ВКонтакте!"
+  );
   $("ul").html("");
 });
