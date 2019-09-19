@@ -5,6 +5,7 @@
     grid-template-columns: 100px 40vw;
     grid-column-gap: 20px;
     grid-row-gap: 10px;
+    min-height: 100px;
 }
 
 .btn {
