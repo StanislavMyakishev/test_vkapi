@@ -10,9 +10,6 @@ if (getCookie("auth_cookie")) {
   $(".login-btn").css("display", "initial");
 }
 
-if (localStorage.getItem("vk_friends_list") !== null) {
-}
-
 function getCookie(name) {
   let matches = document.cookie.match(
     new RegExp(
@@ -78,7 +75,7 @@ function drawFriendsList(friendsList) {
                             <img class="list-elems friend-img" src="${f.photo_100}"/>
                             <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
                             <p style="font-weight:1vh;" class="online-status">${online}
-                                <i style="font-weight:1vh;text-align:left;display:${mobile};" class="tiny material-icons">phone_iphone</i>
+                                <img src="/css/static/phone_iphone.svg" alt="smartphone icon"/>
                             </p>
                         </div>
                     </a>
@@ -112,9 +109,7 @@ $(".login-btn").click(event => {
 
       let promise = new Promise(resolve => {
         VK.Api.call(
-          "friends.search",
-          { count: 5, fields: "photo_100,online", v: "5.52" },
-          resp => {
+          "friends.search", { count: 5, fields: "photo_100,online", v: "5.52"}, resp => {
             let html = "";
             html = drawFriendsList(resp.response.items);
             setCookie("auth_cookie", `${JSON.stringify(resp.response.items)}`, {
