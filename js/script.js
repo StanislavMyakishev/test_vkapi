@@ -28,10 +28,6 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires.toUTCString) {
-    options.expires = options.expires.toUTCString();
-  }
-
   let updatedCookie =
     encodeURIComponent(name) + "=" + encodeURIComponent(value);
 
