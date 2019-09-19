@@ -1,15 +1,15 @@
 /*jshint esversion: 9 */
 
 if (getCookie("auth_cookie")) {
-  $(".lead").html(writeHello(getCookie("auth_cookie")));
+  $(".lead").html(writeHello(getCookie("auth_cookie").replace('"', '')));
   $(".logout-btn").css("display", "initial");
-  if (getCookie('friends_list_cookie')){
-    let resp = JSON.parse(getCookie("auth_cookie"));
-    $(".list-group").html(drawFriendsList(resp));
+  if (getCookie("friends_list_cookie")) {
+    $(".list-group").html(
+      drawFriendsList(JSON.parse(getCookie("friends_list_cookie")))
+    );
   } else {
     $(".list-group").html(drawFriendsList({}));
   }
-
 } else {
   deleteCookie("user_name");
   $(".login-btn").css("display", "initial");
@@ -121,10 +121,7 @@ $(".login-btn").click(event => {
             setCookie(
               "friends_list_cookie",
               `${JSON.stringify(resp.response.items)}`,
-              {
-                samesite: true,
-                "max-age": 3600
-              }
+              { samesite: true, "max-age": 3600}
             );
             resolve(html);
           }
@@ -142,7 +139,8 @@ $(".login-btn").click(event => {
 
 $(".logout-btn").click(event => {
   event.preventDefault();
-  deleteCookie("user_name");
+  deleteCookie("auth_cookie");
+  deleteCookie('friends_list_cookie');
   VK.Auth.logout();
   VK.Auth.revokeGrants();
   $(".logout-btn").css("display", "none");
