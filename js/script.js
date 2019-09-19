@@ -77,7 +77,7 @@ function drawFriendsList(friendsList) {
                             <div class="media-body">
                                 <h4 class="list-elems friend-text">${f.first_name} ${f.last_name}</h4>
                                 <p style="font-weight:1vh;" class="online-status">${online}
-                                <img style="display:${mobile};" src="./css/static/phone_iphone.svg" alt="smartphone icon"/>
+                                <img style="height:5px;display:${mobile};" src="./css/static/phone_iphone.svg" alt="smartphone icon"/>
                                 </p>
                             </div>
                         </div>
